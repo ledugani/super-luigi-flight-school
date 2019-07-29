@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import {bg} from '../common/Sprite';
+import sheet from '../res/sheet.png';
+import {width, height} from '../common/common';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+
+    const style = {
+      width: width,
+      height: height,
+    }
+
+    return (
+      <div className="App" id="fakingcanvas" style={style}>
+        {bg}
+      </div>
+    );
+  }
 }
 
 export default App;
