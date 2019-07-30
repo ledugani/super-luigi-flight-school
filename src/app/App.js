@@ -1,20 +1,18 @@
 import React, {Component} from 'react';
 import './App.css';
-import {bg, fg} from '../common/Sprite';
+import {bg, fg, luigi0, luigi1, luigi2} from '../common/Sprite';
 import {width, height} from '../common/common';
 import { observer } from 'mobx-react';
-import { luigi1 } from '../common/Sprite';
-import { luigi2 } from '../common/Sprite';
-import { luigi0 } from '../common/Sprite';
 
 const SpriteWrapper = observer(class SpriteWrapper extends Component {
   render = () => {
     const gameSprite = this.props.gameSprite;
-
+    const rotate = 'rotate(' + gameSprite.rotation + 'rad)';
     const translate = 'translate(' + gameSprite.cx + 'px,' + gameSprite.cy + 'px)';
+    const ctrans = (gameSprite.rotation == null) ? translate : translate + ' ' + rotate;
 
     var style = {
-      transform: translate,
+      transform: ctrans,
       position: 'absolute',
     }
 

@@ -27,9 +27,36 @@ function guid() {
     s4() + '-' + s4() + s4() + s4();
 }
 
+const updateLuigi = function(luigi) {
+  luigi.frame += store.frames % 10 === 0 ? 1 : 0;
+  luigi.frame %= luigi.animation.length; //at every 10th, frame change luigi frame
+
+  luigi.velocity += luigi.gravity;
+  luigi.cy += luigi.velocity;
+
+  if (luigi.cy >= height - fg_h-10) {
+    luigi.cy = height - fg_h-10;
+
+    luigi.velocity = luigi._jump;
+  }
+
+  if (luigi.velocity >= luigi._jump) {
+
+    luigi.frame = 1;
+    luigi.rotation = Math.min(Math.PI/2, luigi.rotation + 0.3);
+
+  } else {
+
+    luigi.rotation = -0.3;
+
+  }
+}
+
 export const updateFrame = action(function() {
   store.frames++;
   store.fgpos = (store.fgpos -2) % 14;
   fg1.cx = store.fgpos;
   fg2.cx = store.fgpos + fg_w;
+
+  updateLuigi(store.luigi);
 });
